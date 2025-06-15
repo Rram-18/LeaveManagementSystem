@@ -17,12 +17,11 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    // 🔐 LOGIN
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest req) {
         User user = userRepo.findByEmail(req.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found with email: " + req.getEmail()));
-
-
 
         if (!user.getPassword().equals(req.getPassword())) {
             return ResponseEntity.status(401).body("Wrong password");
@@ -30,5 +29,13 @@ public class AuthController {
 
         String token = jwtUtil.generateToken(user.getEmail());
         return ResponseEntity.ok("Bearer " + token);
+    }
+
+    // 🔍 GET ROLE (used by frontend after login)
+    @GetMapping("/user/role")
+    public ResponseEntity<String> getRole(@RequestParam String email) {
+        User user = userRepo.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return ResponseEntity.ok(user.getRole());
     }
 }
