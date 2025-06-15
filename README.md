@@ -1,63 +1,86 @@
 # 📝 Leave Management System
 
-This is a **Spring Boot project** that allows users to apply for leave and admin to approve it.
+This is a full-stack Leave Management System built using **Spring Boot (Java)** for backend and **HTML/CSS/JavaScript** for frontend. It allows users to apply for leaves and admins to approve or reject them.
 
 ---
 
-## 🔑 Features
+## 🚀 Features
 
-- User & Admin Login (with JWT Token)
-- Apply for Leave
-- Admin Approves Leave
-- H2 In-Memory Database
-- Sends Email after Approval
+### 🔐 Authentication
+- Login with email and password
+- JWT-based token system
+- Role-based access (`USER`, `ADMIN`)
+
+### 🧍 User
+- Login and apply for leave
+- View status (Pending, Approved, Rejected)
+
+### 🛡️ Admin
+- Login and view pending leaves
+- Approve or reject leaves
+- Sends email on approval or rejection
+
+### 🌐 Frontend
+- Basic HTML/CSS/JS page
+- Choose login type: User or Admin
+- Apply for leave or approve/reject based on role
 
 ---
 
-## 💻 Technologies Used
+## 💾 Technologies Used
 
-- Java 17
 - Spring Boot
-- Spring Security
-- Spring Data JPA
-- H2 Database
-- Gmail SMTP (JavaMailSender)
-- JWT Authentication
+- Spring Security (JWT)
+- Spring Data JPA + H2 Database
+- JavaMailSender (Email)
+- HTML, CSS, JavaScript (Vanilla)
+- Postman (for testing APIs)
 
 ---
 
-## 🚀 How to Run the Project
+## ⚙️ How to Run
 
-1. Clone the repo:
+### 🖥️ Backend
 
-git clone https://github.com/Rram-18/LeaveManagementSystem.git
+```bash
+cd LeaveManagementSystem
+./mvnw spring-boot:run
+Or run LeaveApp.java in your IDE.
 
+🌍 Frontend
+Open index.html in your browser:
 
-2. Open the project in IntelliJ
+sql
+Copy
+Edit
+Right click → Open with Chrome (or any browser)
+📂 Folder Structure
+css
+Copy
+Edit
+LeaveManagementSystem/
+├── src/
+│   └── main/
+│       ├── java/com/ram/leave/    ← Java backend files
+│       └── resources/
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+├── pom.xml
+└── README.md
+📧 Email Setup (for Admin Notifications)
+Add your actual email and app password in application.properties:
 
-3. Go to `application.properties` and change:
-
+properties
+Copy
+Edit
 spring.mail.username=your_email@gmail.com
-spring.mail.password=your_gmail_app_password
+spring.mail.password=your_app_password
+🙋 Author
+Ram Naresh Dubey
+📧 dubey.ram9919@gmail.com
 
+📌 Note
+Frontend is kept simple for demonstration. You can later enhance it using React or Angular.
 
-4. Run the project
-
-5. Test using Postman:
-    - **Login**: `POST /login`
-    - **Apply Leave**: `POST /leave/apply`
-    - **Approve Leave**: `POST /leave/approve/{id}`
-    - **View Leaves**: `GET /leave/mine`
-
----
-
-## 🧑‍💼 Default Users (for testing)
-
-You can insert users from H2 Console or directly in Java code.
-
----
-
-## 🧠 Author
-
-- Ram Naresh Dubey
-- Java Developer | Spring Boot Enthusiast
